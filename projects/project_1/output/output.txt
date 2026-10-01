@@ -1,0 +1,44 @@
+RR quantum 3:
+| P1 | P2 | P3 | P4 | P1 | P2 | P3 | P4 | P1 | P5 | P3 |
+0    3    6    9    12   15   17   20   21   23   26   29
+
+RR quantum 5:
+| P1 | P2 | P3 | P4 | P1 | P3 | P5 |
+0    5    10   15   19   22   26   29
+
+SJF:
+| P1 | P4 | P2 | P3 | P5 |
+0    8    12   17   26   29
+
+  Metric            RR (q = 3)     RR (q = 5)     SJF
+  Average WT        12.20          10.20          7.40
+  Average TAT       18.00          16.00          13.20
+  CPU utilization   100.00%        100.00%        100.00%
+  Execution order   P1 P2 P3 P4 P1 P2 P3 P4 P1 P5 P3  (RR q=3)
+                    P1 P2 P3 P4 P1 P3 P5              (RR q=5)
+                    P1 P4 P2 P3 P5                    (SJF)
+
+Best-Fit (mem.txt):
+Initial blocks: [100, 500, 200, 300, 600]
+Request 1 (700) -> UNALLOCATED
+Request 2 (417) -> Block 2 (500 -> 83 left)
+Request 3 (112) -> Block 3 (200 -> 88 left)
+Request 4 (426) -> Block 5 (600 -> 174 left)
+Request 5 (800) -> UNALLOCATED
+Remaining block sizes: [100, 83, 88, 300, 174]
+
+LRU (paging.txt):
+7    [7 - -]        FAULT
+0    [7 0 -]        FAULT
+1    [7 0 1]        FAULT
+2    [2 0 1]        FAULT
+0    [2 0 1]        HIT
+3    [2 0 3]        FAULT
+0    [2 0 3]        HIT
+4    [4 0 3]        FAULT
+
+Total references: 8
+Hits            : 2
+Faults          : 6
+Hit ratio       : 0.25
+Fault ratio     : 0.75
